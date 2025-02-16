@@ -4,7 +4,11 @@
 %}
 
 <div>
-  {{ video | video_tag }} <!-- Renders uploaded video if available -->
+  {{ 
+    video | 
+    video_tag:
+    image-size: "100%"
+    }} <!-- enders uploaded video if available -->
   <br><br><br>
 
   {% if video_url != blank %}

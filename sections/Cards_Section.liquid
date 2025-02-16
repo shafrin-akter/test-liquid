@@ -1,0 +1,177 @@
+{% liquid
+  assign bg_img = section.settings.bg_image
+  assign bg_color = section.settings.bg_color
+  assign bg_repeat = section.settings.bg_repeat
+  assign padding = section.settings.padding
+  assign text_color = section.settings.text_color
+  assign colmun_per_row = section.settings.column_per_row
+  assign image_ratio = section.settings.image_ratio
+  assign column_spacing = section.settings.column_spacing
+  
+%}
+
+<!-- block section -->
+  <div class="card_section">
+  
+   <div class="card_flex">
+     
+     {% content_for "blocks" %}
+     
+   </div>
+  
+  </div>
+  
+
+<style>
+
+  #shopify-section-{{section.id}} .card_flex{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:center;
+   
+    
+    
+  }
+  #shopify-section-{{section.id}} .card_flex .shopify-block{
+    max-width:{{colmun_per_row}} !important;
+    felx-basis:{{colmun_per_row}} !important;
+    padding:{{column_spacing}}px;
+    
+  }
+  #shopify-section-{{section.id}} .card_flex .shopify-block img{
+    aspect-ratio: 3 / {{image_ratio}};
+    object-fit: cover;
+    display: block;
+    margin:0 auto;
+    
+  }
+ 
+   .card_section {
+    {% if bg_img %}
+      background-image: url('{{ bg_img | img_url: "large" }}');
+      background-size: cover;
+      background-repeat: {{ bg_repeat }};
+      background-position: center;
+    {% else %}
+      background-color: {{ bg_color }};
+    {% endif %}
+    padding: {{padding}}px;
+    color:{{ text_color }};
+    
+   
+  }
+ 
+</style>
+
+{% schema %}
+{
+  
+  "name": "Cards Section",
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "bg_image"
+    },
+    {
+      "type": "color",
+      "label": "Background Color",
+      "id": "bg_color"
+    },
+    {
+      "type": "select",
+      "id": "bg_repeat",
+      "label": "Background Repeat",
+      "options": [
+        { "value": "repeat", "label": "Repeat" },
+        { "value": "no-repeat", "label": "No Repeat" },
+        { "value": "repeat-x", "label": "Repeat Horizontally" },
+        { "value": "repeat-y", "label": "Repeat Vertically" }
+      ],
+      "default": "no-repeat"
+    },
+    {
+      "type": "range",
+      "label": "Padding",
+      "id": "padding",
+      "min": 0,
+      "max": 100,
+      "unit": "px",
+      "default":0,
+      "step": 1
+    },
+    {
+      "type": "color",
+      "label": "Text Color",
+      "id": "text_color"
+    },
+    {
+        "type": "select",
+        "id": "column_per_row",
+        "label": "Column Per Row",
+        "options": [
+          {
+            "label": "6 Column",
+            "value": "16.67%"
+          },
+           {
+            "label": "5 Column",
+            "value": "20%"
+          },
+          {
+            "label": "4 Column",
+            "value": "25%"
+          },
+          {
+            "label": "3 Column",
+            "value": "33.33%"
+          },
+         {
+            "label": "2 Colmun",
+            "value": "50%"
+          },
+          {
+            "label": "1 Column",
+            "value": "100%"
+          },
+        ]
+      },
+    {
+      "type": "header",
+      "content": "Crad Style"
+    },
+    {
+      "type": "range",
+      "id": "image_ratio",
+      "label": "Image Size",
+      "min": 0,
+      "max": 7,
+      "default":3,
+      "step": 0.1
+      
+    },
+    {
+      "type": "range",
+      "label": "Column Spacing",
+      "id": "column_spacing",
+      "min": 0,  
+      "max": 100,
+      "unit": "px",
+      "default":10,
+      "step": 1
+    
+    }
+    
+  ],
+  "presets": [
+    {
+      "name": "Cards Section"
+    }
+  ]
+}
+{% endschema %}

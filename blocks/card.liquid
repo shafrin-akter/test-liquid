@@ -1,0 +1,301 @@
+{%liquid
+  assign card_radius = block.settings.card_radius
+  assign border = block.settings.border
+  assign border_color = block.settings.border_color
+  assign img = block.settings.image
+  assign img_radius = block.settings.img_radius
+  assign column_width = block.settings.column_width
+  assign title = block.settings.title
+  assign description = block.settings.description
+  assign btn_link = block.settings.btn_link
+  assign btn_text = block.settings.btn_text
+  assign text_align = block.settings.text_align
+  assign btn_text_color = block.settings.btn_text_color
+  assign btn_bg_color = block.settings.btn_bg_color
+  assign btn_padding = block.settings.btn_padding
+  assign title_size = block.settings.title_size
+  assign btn_width = block.settings.btn_width
+  assign btn_radius = block.settings.btn_radius
+  assign title_color = block.settings.title_color
+  assign description_color = block.settings.description_color
+  assign description_size = block.settings.description_size
+  assign line_height = block.settings.line_height
+%}
+
+
+  {% if img != "blank" %}
+    <img src="{{ img | img_url : "1200x" }}">
+  {% endif %}
+  
+  <h1 class="title">{{ title }}</h1>
+  
+  {{ description }}
+  
+  <a class="card_btn" href="{{ btn_link }}">{{ btn_text }}</a>
+    
+  
+
+
+<style>
+  #shopify-block-{{block.id}}{
+
+   {% unless column_width == " " %}
+    
+      max-width:{{column_width}} !important;
+      felx-basis:{{column_width}} !important;
+      text-align:{{text_align}};
+     
+    {% endunless %}
+    margin:10px;
+    border-radius:{{card_radius}}px;
+    border: {{border}}px solid {{border_color}} !important;
+    
+    
+  }
+  /* .card{
+    border:{{border}}px solid {{border_color}};
+  } */
+  .card img{
+    max-width:100%;
+    border-radius:{{img_radius}}px;
+   
+  }
+ #shopify-block-{{block.id}} .title{
+    padding:0;
+    margin:0;
+    font-size:{{ title_size }}px;
+    color:{{title_color}};
+    line-height:30px;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+ #shopify-block-{{block.id}} p{
+    padding:0;
+    margin:0;
+    font-size:{{ description_size }}px;
+    line-height: {{line_height}}px;
+   color:{{description_color}};
+    
+  }
+
+{% if btn_link != "blank" %}
+   #shopify-block-{{block.id}} a{
+    text-decoration:none;
+    color:{{btn_text_color}};
+    background-color: {{btn_bg_color}};
+    padding:{{btn_padding}}px;
+    width:{{btn_width}}%;
+    display: inline-block;
+    margin-top:10px;
+    text-align:center;
+   border-radius:{{btn_radius}}px;
+   font-size:18px;
+   font-weight:bold;
+   border:1px solid black;
+    
+  }
+  {% endif %}}
+  
+</style>
+{% schema %}
+  {
+    "name": "Card",
+    "class": "card",
+    "settings": [
+      {
+        "type": "range",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "default":0,
+        "id": "card_radius",
+        "label": "Border Radius",
+        "step": 1
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Boder"
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "default":1,
+        "id": "border",
+        "label": "Border",
+        "step": 1
+      },
+
+      {
+        "type": "image_picker",
+        "label": "Image",
+        "id": "image"
+      },
+       {
+        "type": "range",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "default":8,
+        "id": "img_radius",
+        "label": "Image Radius",
+        "step": 1
+      },
+      {
+        "type": "header",
+        "content": "Block Style"
+      },
+      {
+        "type": "select",
+        "id": "column_width",
+        "label": "Column Width",
+        "options": [
+          {
+            "label": "Auto",
+            "value": " "
+          },
+          {
+            "label": "33.33%",
+            "value": "33.33%"
+          },
+          {
+            "label": "16.67",
+            "value": "16.67%"
+          },
+          {
+            "label": "25%",
+            "value": "25%"
+          },
+          {
+            "label": "20%",
+            "value": "20%"
+          },
+          {
+            "label": "50%",
+            "value": "50%"
+          },
+          {
+            "label": "100%",
+            "value": "100%"
+          },
+          
+        ]
+      },
+      {
+        "type": "text",
+        "label": "Title",
+        "id": "title"
+      },
+      {
+        "type": "color",
+        "label": "Title Font color",
+        "id": "title_color"
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "default":20,
+        "id": "title_size",
+        "label": "Title Font Size",
+        "step": 1
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+      },
+      
+      {
+        "type": "color",
+        "label": "Description Font color",
+        "id": "description_color"
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "default":20,
+        "id": "description_size",
+        "label": "Description Font Size",
+        "step": 1
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "default":27,
+        "id": "line_height",
+        "label": "Description Line Height",
+        "step": 1
+      },
+      {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button",
+      },
+      {
+        "type": "text",
+        "label": "Button",
+        "id": "btn_text"
+      },
+      {
+        "type": "range",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "default":0,
+        "id": "btn_radius",
+        "label": "Button Radius",
+        "step": 1
+      },
+      {
+        "type": "text_alignment",
+        "id": "text_align",
+        "label": "Text Align"
+      },
+      {
+        "type": "color",
+        "label": "Button Text Color",
+        "id": "btn_text_color"
+      },
+      
+      {
+        "type": "color",
+        "label": "Button Background Color",
+        "id": "btn_bg_color"
+      },
+      {
+        "type": "range",
+        "label": "Button Padding",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default":10,
+        "id": "btn_padding"
+      },
+      {
+        "type": "range",
+        "label": "Button Width",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default":100,
+        "id": "btn_width"
+      }
+  
+      
+          
+    ],
+    "presets": [
+      {
+        "name": "card"
+      }
+    ]
+  }
+{% endschema %}

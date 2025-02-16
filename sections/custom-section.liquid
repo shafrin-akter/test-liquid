@@ -1,0 +1,46 @@
+{% liquid
+  assign img = section.settings.media
+%}
+
+<!-- Debugging: Check Image URL -->
+<p>Image URL: <a href="{{ img | image_url: '1200x' }}" target="_blank">Click to Open Image</a></p>
+
+<div class="flex">
+  {% if img != blank %}
+    <img src="{{ img | image_url: 'master' }}" alt="Selected Image">
+  {% else %}
+    <p>No image selected</p>
+  {% endif %}
+</div>
+
+<style>
+  .flex {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  img {
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "custom section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "media",
+      "label": "Select Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,33 +1,20 @@
 
 {%liquid 
-   assign video = block.settings.video
    assign video_url = block.settings.video_url
-   assign img = block.settings.img
+   
 
 %}
 
 <div>
-  {{video}}
-  <br><br><br>
+ 
   {{video_url}}
-  <br><br><br>
-  {{img}}
+ 
 </div>
 
 {% schema %}
 {
   "name": "Video",
   "settings": [
-    {
-        "type": "image_picker",
-        "label": "Image",
-        "id": "img"
-    },
-    {
-      "type": "video",
-      "label": "Video",
-       "id": "video"
-    },
     {
       "type": "video_url",
       "label": "Video Link",

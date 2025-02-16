@@ -4,19 +4,19 @@
 %}
 
 <div>
+ {% if video !=blank %}
   {{ 
     video | 
     video_tag:
     image-size: "1100x"
     }} <!-- enders uploaded video if available -->
-  <br><br><br>
-
+ {% endif %}
   {% if video_url != blank %}
     {% if video_url contains "youtube.com" or video_url contains "youtu.be" %}
       <iframe 
         width="100%" 
         height="315" 
-        src="{{ video_url | replace: 'watch?v=', 'embed/' }}" 
+        src="{{ vi{deo_url | replace: 'watch?v=', 'embed/' }}" 
         title="YouTube video player" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 

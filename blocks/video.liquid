@@ -1,25 +1,23 @@
 {% liquid 
    assign video_url = block.settings.video_url
+   assign video = block.settings.video
 %}
 
 <div>
-  {% if video_url != blank %}
-    <iframe 
-      width="100%" 
-      height="400" 
-      src="{{ video_url | replace: 'watch?v=', 'embed/' }}" 
-      frameborder="0" 
-      allowfullscreen>
-    </iframe>
-  {% else %}
-    <p>No video available</p>
-  {% endif %}
+  {{video}}
+  <br><br><br>
+  {{video_url}}
 </div>
 
 {% schema %}
 {
   "name": "Video",
   "settings": [
+    {
+      "type": "video",
+      "label": "Video",
+      "id": "video"
+    },
     {
       "type": "video_url",
       "label": "Video Link",

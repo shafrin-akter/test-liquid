@@ -4,18 +4,39 @@
 %}
 
 <div>
-  {{video}}
+  {{ video | video_tag }} <!-- Renders uploaded video if available -->
   <br><br><br>
-  {{video_url.id}}
 
-  {%  case video_url.type %} 
-    {% when "s" %}
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video_url.id}}?si=N80rqb-Mk9hwhRac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    {% when "vimeo" %}
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video_url.id}}?si=N80rqb-Mk9hwhRac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-  {% endcase %} 
+  {% if video_url != blank %}
+    {% if video_url contains "youtube.com" or video_url contains "youtu.be" %}
+      <iframe 
+        width="560" 
+        height="315" 
+        src="{{ video_url | replace: 'watch?v=', 'embed/' }}" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+      </iframe>
+    
+    {% elsif video_url contains "vimeo.com" %}
+      <iframe 
+        width="560" 
+        height="315" 
+        src="https://player.vimeo.com/video/{{ video_url | split: '/' | last }}" 
+        title="Vimeo video player" 
+        frameborder="0" 
+        allow="autoplay; fullscreen; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    
+    {% else %}
+      <p>Invalid video URL</p>
+    {% endif %}
+  {% else %}
+    <p>No video available</p>
+  {% endif %}
 </div>
 
 {% schema %}

@@ -1,11 +1,30 @@
+{%liquid 
+   assign video = block.settings.video
+   assign video_url = block.settings.video_url
+
+%}
+
+<div>
+  {{video}}
+  <br><br><br>
+  {{video_url}}
+</div>
+
 {% schema %}
 {
   "name": "Video",
+  "class": "video",
   "settings": [
     {
       "type": "video",
       "label": "Video",
        "id": "video"
+    },
+    {
+      "type": "video_url",
+      "label": "Video Link",
+      "id": "video_url",
+      "accepts": ["youtube", "vimeo"]
     }
     ],
     "presets": [

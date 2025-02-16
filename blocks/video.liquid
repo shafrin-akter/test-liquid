@@ -1,14 +1,19 @@
-
-{%liquid 
+{% liquid 
    assign video_url = block.settings.video_url
-   
-
 %}
 
 <div>
- 
-  {{video_url}}
- 
+  {% if video_url != blank %}
+    <iframe 
+      width="100%" 
+      height="400" 
+      src="{{ video_url | replace: 'watch?v=', 'embed/' }}" 
+      frameborder="0" 
+      allowfullscreen>
+    </iframe>
+  {% else %}
+    <p>No video available</p>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -21,12 +26,11 @@
       "id": "video_url",
       "accepts": ["youtube","vimeo"]
     }
-    ],
-    "presets": [
-      {
-        "name": "Video"
-      }
-    ]
-    
+  ],
+  "presets": [
+    {
+      "name": "Video"
+    }
+  ]
 }
 {% endschema %}

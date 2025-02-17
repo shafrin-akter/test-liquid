@@ -28,6 +28,12 @@
     assign auto = true 
   
    endif
+   
+   if mute == true
+
+    assign mute = muted
+  
+   endif
 
 
 
@@ -38,7 +44,7 @@
   {% if video != blank %}
     {{ 
       video | 
-      video_tag: image_size: "1100x", loop:looping , controls:control , autoplay:auto
+      video_tag: image_size: "1100x", loop:looping , controls:control , autoplay:auto , mute:mute
     }} 
   {% else %}
     {% if video_url != blank %}
@@ -104,6 +110,13 @@
       "type": "checkbox",
       "label": "Autoplay",
       "id": "autoplay",
+      "default": false
+
+    },
+    {
+      "type": "checkbox",
+      "label": "Muted",
+      "id": "muted",
       "default": false
 
     }

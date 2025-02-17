@@ -225,7 +225,10 @@
         "video_GTrhRb": {
           "type": "video",
           "settings": {
-            "video_url": "https://www.youtube.com/watch?v=5JXPbiqDNsg"
+            "video_url": "https://www.youtube.com/watch?v=5JXPbiqDNsg",
+            "loop": true,
+            "controls": true,
+            "autoplay": true
           }
         }
       },

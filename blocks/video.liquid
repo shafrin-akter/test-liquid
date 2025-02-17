@@ -1,13 +1,44 @@
 {% liquid 
    assign video_url = block.settings.video_url
    assign video = block.settings.video
-%}
+   assign loop = block.settings.loop
+   assign controls = block.settings.controls
+   assign autoplay = block.settings.autoplay
+
+   assign looping = false 
+
+   if loop == true
+
+    assign looping = true 
+  
+   endif
+
+   assign control = false 
+
+   if controls == true
+
+    assign control = true 
+  
+   endif
+
+   assign auto = false 
+
+   if autoplay == true
+
+    assign auto = true 
+  
+   endif
+
+
+
+
+    %}
 
 <div>
   {% if video != blank %}
     {{ 
       video | 
-      video_tag: image_size: "1100x"
+      video_tag: image_size: "1100x", loop:looping , controls:control , autoplay:auto
     }} 
   {% else %}
     {% if video_url != blank %}
@@ -54,6 +85,27 @@
       "type": "url",
       "label": "Video Link",
       "id": "video_url"
+    },
+    {
+      "type": "checkbox",
+      "label": "Loop",
+      "id": "loop",
+      "default": false
+
+    },
+    {
+      "type": "checkbox",
+      "label": "controls",
+      "id": "controls",
+      "default": true
+
+    },
+    {
+      "type": "checkbox",
+      "label": "Autoplay",
+      "id": "autoplay",
+      "default": false
+
     }
   ],
   "presets": [

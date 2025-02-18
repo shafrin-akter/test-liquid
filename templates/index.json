@@ -229,7 +229,7 @@
             "loop": true,
             "controls": true,
             "autoplay": true,
-            "muted": false
+            "muted": true
           }
         }
       },

@@ -90,7 +90,8 @@
             "btn_bg_color": "#d91f1f",
             "btn_padding": 9,
             "btn_width": 100
-          }
+          },
+          "blocks": {}
         },
         "card_99Y8xt": {
           "type": "card",
@@ -116,7 +117,8 @@
             "btn_bg_color": "#d91f1f",
             "btn_padding": 10,
             "btn_width": 100
-          }
+          },
+          "blocks": {}
         },
         "card_YAtD6w": {
           "type": "card",
@@ -142,7 +144,8 @@
             "btn_bg_color": "#d91f1f",
             "btn_padding": 10,
             "btn_width": 100
-          }
+          },
+          "blocks": {}
         },
         "card_V4y9Ga": {
           "type": "card",
@@ -168,7 +171,8 @@
             "btn_bg_color": "#d91f1f",
             "btn_padding": 10,
             "btn_width": 100
-          }
+          },
+          "blocks": {}
         },
         "card_kYfh8z": {
           "type": "card",
@@ -194,7 +198,8 @@
             "btn_bg_color": "#d91f1f",
             "btn_padding": 9,
             "btn_width": 100
-          }
+          },
+          "blocks": {}
         },
         "card_jYVpce": {
           "type": "card",
@@ -220,7 +225,8 @@
             "btn_bg_color": "#d91f1f",
             "btn_padding": 10,
             "btn_width": 100
-          }
+          },
+          "blocks": {}
         },
         "video_GTrhRb": {
           "type": "video",
@@ -231,7 +237,8 @@
             "controls": true,
             "autoplay": true,
             "muted": true
-          }
+          },
+          "blocks": {}
         }
       },
       "block_order": [
